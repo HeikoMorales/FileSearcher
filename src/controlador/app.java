@@ -3,7 +3,7 @@ package controlador;
 import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
 
-public class app {
+public class App {
 
     String directory = "";
     String finalDirectory = "";
@@ -12,7 +12,7 @@ public class app {
     long fileCount = 0, startTime, endTime;
     int mode = -1;
 
-    public app() {
+    public App() {
         scanner = new Scanner(System.in);
     }
 
@@ -25,7 +25,7 @@ public class app {
         startTime = System.currentTimeMillis();
 
         ForkJoinPool pool = new ForkJoinPool();
-        fileCount = pool.invoke(new searcher(directory, extension, finalDirectory, mode));
+        fileCount = pool.invoke(new Searcher(directory, extension, finalDirectory, mode));
 
         endTime = System.currentTimeMillis();
         System.out.println("Number of files: " + fileCount);
@@ -66,7 +66,7 @@ public class app {
 
         System.out.println("[INFO] Starting...");
 
-        app main = new app();
+        App main = new App();
         main.run();
 
         System.out.println("[INFO] Finished!");

@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
-public class searcher extends RecursiveTask<Long> {
+public class Searcher extends RecursiveTask<Long> {
 
     String directory;
     String finalDirectory;
@@ -14,7 +14,7 @@ public class searcher extends RecursiveTask<Long> {
     long fileCount;
     int mode;
 
-    public searcher(String directory, String extension, String finalDirectory, int mode) {
+    public Searcher(String directory, String extension, String finalDirectory, int mode) {
         this.directory = directory;
         this.extension = extension;
         this.finalDirectory = finalDirectory;
@@ -30,7 +30,7 @@ public class searcher extends RecursiveTask<Long> {
         for (File subFile : new File(directory).listFiles()) {
             if (subFile.isDirectory()) {
 
-                searcher sc = new searcher(subFile.getAbsolutePath(), extension, finalDirectory, mode);
+                Searcher sc = new Searcher(subFile.getAbsolutePath(), extension, finalDirectory, mode);
                 tasks.add(sc);
                 sc.fork();
 
