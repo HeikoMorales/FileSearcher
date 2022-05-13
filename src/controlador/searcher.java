@@ -54,50 +54,36 @@ public class searcher extends RecursiveTask<Long> {
     }
 
     private void doAction(int mode, File subFile, String finalDirectory) {
-        
-        switch (mode) {
-            case 1:
-                copyFile(subFile, new File(finalDirectory));
-
-                break;
-            case 2:
-                moveFile(subFile, new File(finalDirectory));
-
-                break;
-            case 3:
-                deleteFile(subFile);
-
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    private void moveFile(File subFile, File file) {
         try {
-            Files.move(subFile.toPath(), file.toPath().resolve(subFile.getName()));
-        } catch (IOException e) {
-            // e.printStackTrace();
-            System.out.println("[ERROR] " + e.getMessage() + " File: " + subFile.getName());
-        }
+            switch (mode) {
+                case 1:
+                    copyFile(subFile, new File(finalDirectory));
+                    break;
+                case 2:
+                    moveFile(subFile, new File(finalDirectory));
+                    break;
+                case 3:
+                    deleteFile(subFile);
+                    break;
+                default:
+                    break;
+            }
 
-    }
-
-    private void copyFile(File subFile, File file) {
-        try {
-            Files.copy(subFile.toPath(), file.toPath().resolve(subFile.getName()));
         } catch (IOException e) {
             System.out.println("[ERROR] " + e.getMessage() + " File: " + subFile.getName());
         }
     }
 
-    private void deleteFile(File subFile) {
-        try {
-            Files.delete(subFile.toPath());
-        } catch (IOException e) {
-            System.out.println("[ERROR] " + e.getMessage() + " File: " + subFile.getName());
-        }
+    private void moveFile(File subFile, File file) throws IOException {
+        Files.move(subFile.toPath(), file.toPath().resolve(subFile.getName()));
+    }
+
+    private void copyFile(File subFile, File file) throws IOException {
+        Files.copy(subFile.toPath(), file.toPath().resolve(subFile.getName()));
+    }
+
+    private void deleteFile(File subFile) throws IOException {
+        Files.delete(subFile.toPath());
     }
 
 }
