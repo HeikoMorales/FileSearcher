@@ -30,7 +30,6 @@ public class app {
         endTime = System.currentTimeMillis();
         System.out.println("Number of files: " + fileCount);
         System.out.println("Time spend: " + (endTime - startTime) + "ms");
-
     }
 
     private void getUserInputs() {
@@ -45,7 +44,6 @@ public class app {
             System.out.println("Enter the target directory: ");
             finalDirectory = scanner.nextLine();
         }
-
     }
 
     private void getSearcherMode() {
@@ -62,7 +60,6 @@ public class app {
             }
               
         } while (mode < 1 || mode > 3);
-
     }
 
     public static void main(String[] args) {
